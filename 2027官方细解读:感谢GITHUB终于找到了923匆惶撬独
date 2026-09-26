@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.b.ycgskfy.com/Article/details/7956091.shtml<br>
+www.b.ycgskfy.com/Article/details/5580691.shtml<br>
+www.b.ycgskfy.com/Article/details/0595757.shtml<br>
+www.b.ycgskfy.com/Article/details/0832135.shtml<br>
+www.b.ycgskfy.com/Article/details/7385973.shtml<br>
+www.b.ycgskfy.com/Article/details/2395874.shtml<br>
+www.b.ycgskfy.com/Article/details/0965091.shtml<br>
+www.b.ycgskfy.com/Article/details/9166253.shtml<br>
+www.b.ycgskfy.com/Article/details/6176557.shtml<br>
+www.b.ycgskfy.com/Article/details/5317351.shtml<br>
+www.b.ycgskfy.com/Article/details/4220706.shtml<br>
+www.b.ycgskfy.com/Article/details/4540816.shtml<br>
+www.b.ycgskfy.com/Article/details/7517722.shtml<br>
+www.b.ycgskfy.com/Article/details/2400313.shtml<br>
+www.b.ycgskfy.com/Article/details/7240756.shtml<br>
+www.b.ycgskfy.com/Article/details/3784472.shtml<br>
+www.b.ycgskfy.com/Article/details/3945284.shtml<br>
+www.b.ycgskfy.com/Article/details/1284109.shtml<br>
+www.b.ycgskfy.com/Article/details/4843696.shtml<br>
+www.b.ycgskfy.com/Article/details/7910329.shtml<br>
+www.b.ycgskfy.com/Article/details/8695466.shtml<br>
+www.b.ycgskfy.com/Article/details/9121652.shtml<br>
+www.b.ycgskfy.com/Article/details/3509687.shtml<br>
+www.b.ycgskfy.com/Article/details/8347396.shtml<br>
+www.b.ycgskfy.com/Article/details/6103915.shtml<br>
+www.b.ycgskfy.com/Article/details/9406510.shtml<br>
+www.b.ycgskfy.com/Article/details/5629325.shtml<br>
+www.b.ycgskfy.com/Article/details/7027651.shtml<br>
+www.b.ycgskfy.com/Article/details/1622608.shtml<br>
+www.b.ycgskfy.com/Article/details/2104211.shtml<br>
+www.b.ycgskfy.com/Article/details/3113836.shtml<br>
+www.b.ycgskfy.com/Article/details/9473840.shtml<br>
+www.b.ycgskfy.com/Article/details/8608833.shtml<br>
+www.b.ycgskfy.com/Article/details/5006612.shtml<br>
+www.b.ycgskfy.com/Article/details/8449259.shtml<br>
+www.b.ycgskfy.com/Article/details/0989479.shtml<br>
+www.b.ycgskfy.com/Article/details/2778994.shtml<br>
+www.b.ycgskfy.com/Article/details/8768280.shtml<br>
+www.b.ycgskfy.com/Article/details/5387978.shtml<br>
+www.b.ycgskfy.com/Article/details/3109100.shtml<br>
+www.b.ycgskfy.com/Article/details/1096989.shtml<br>
+www.b.ycgskfy.com/Article/details/5031142.shtml<br>
+www.b.ycgskfy.com/Article/details/4625240.shtml<br>
+www.b.ycgskfy.com/Article/details/2292762.shtml<br>
+www.b.ycgskfy.com/Article/details/2746095.shtml<br>
+www.b.ycgskfy.com/Article/details/5277651.shtml<br>
+www.b.ycgskfy.com/Article/details/0534680.shtml<br>
+www.b.ycgskfy.com/Article/details/5617814.shtml<br>
+www.b.ycgskfy.com/Article/details/0200314.shtml<br>
+www.b.ycgskfy.com/Article/details/1921761.shtml<br>
+www.b.ycgskfy.com/Article/details/3508137.shtml<br>
+www.b.ycgskfy.com/Article/details/3239733.shtml<br>
+www.b.ycgskfy.com/Article/details/1405876.shtml<br>
+www.b.ycgskfy.com/Article/details/0579984.shtml<br>
+www.b.ycgskfy.com/Article/details/0803981.shtml<br>
+www.b.ycgskfy.com/Article/details/1687134.shtml<br>
+www.b.ycgskfy.com/Article/details/7436629.shtml<br>
+www.b.ycgskfy.com/Article/details/1920095.shtml<br>
+www.b.ycgskfy.com/Article/details/9032105.shtml<br>
+www.b.ycgskfy.com/Article/details/0506466.shtml<br>
+www.b.ycgskfy.com/Article/details/9801470.shtml<br>
+www.b.ycgskfy.com/Article/details/4898283.shtml<br>
+www.b.ycgskfy.com/Article/details/8055831.shtml<br>
+www.b.ycgskfy.com/Article/details/9469210.shtml<br>
+www.b.ycgskfy.com/Article/details/5095909.shtml<br>
+www.b.ycgskfy.com/Article/details/0409196.shtml<br>
+www.b.ycgskfy.com/Article/details/9721766.shtml<br>
+www.b.ycgskfy.com/Article/details/1768804.shtml<br>
+www.b.ycgskfy.com/Article/details/7283093.shtml<br>
+www.b.ycgskfy.com/Article/details/0812136.shtml<br>
+www.b.ycgskfy.com/Article/details/1914534.shtml<br>
+www.b.ycgskfy.com/Article/details/7244479.shtml<br>
+www.b.ycgskfy.com/Article/details/3728769.shtml<br>
+www.b.ycgskfy.com/Article/details/6499425.shtml<br>
+www.b.ycgskfy.com/Article/details/8440472.shtml<br>
+www.b.ycgskfy.com/Article/details/5323100.shtml<br>
+www.b.ycgskfy.com/Article/details/7803818.shtml<br>
+www.b.ycgskfy.com/Article/details/3508892.shtml<br>
+www.b.ycgskfy.com/Article/details/2190322.shtml<br>
+www.b.ycgskfy.com/Article/details/7500106.shtml<br>
+www.b.ycgskfy.com/Article/details/0173022.shtml<br>
+www.b.ycgskfy.com/Article/details/3792130.shtml<br>
+www.b.ycgskfy.com/Article/details/9225531.shtml<br>
+www.b.ycgskfy.com/Article/details/7944876.shtml<br>
+www.b.ycgskfy.com/Article/details/5724779.shtml<br>
+www.b.ycgskfy.com/Article/details/8983517.shtml<br>
+www.b.ycgskfy.com/Article/details/7356282.shtml<br>
+www.b.ycgskfy.com/Article/details/0942501.shtml<br>
+www.b.ycgskfy.com/Article/details/8067704.shtml<br>
+www.b.ycgskfy.com/Article/details/7935435.shtml<br>
+www.b.ycgskfy.com/Article/details/7897003.shtml<br>
+www.b.ycgskfy.com/Article/details/6771707.shtml<br>
+www.b.ycgskfy.com/Article/details/3138172.shtml<br>
+www.b.ycgskfy.com/Article/details/7819474.shtml<br>
+www.b.ycgskfy.com/Article/details/2433400.shtml<br>
+www.b.ycgskfy.com/Article/details/4543315.shtml<br>
+www.b.ycgskfy.com/Article/details/0859167.shtml<br>
+www.b.ycgskfy.com/Article/details/2765255.shtml<br>
+www.b.ycgskfy.com/Article/details/6104094.shtml<br>
+www.b.ycgskfy.com/Article/details/0384441.shtml<br>
+www.b.ycgskfy.com/Article/details/8081377.shtml<br>
+www.b.ycgskfy.com/Article/details/6116927.shtml<br>
+www.b.ycgskfy.com/Article/details/3164649.shtml<br>
+www.b.ycgskfy.com/Article/details/9060098.shtml<br>
+www.b.ycgskfy.com/Article/details/1289580.shtml<br>
+www.b.ycgskfy.com/Article/details/6782765.shtml<br>
+www.b.ycgskfy.com/Article/details/3209301.shtml<br>
+www.b.ycgskfy.com/Article/details/5728910.shtml<br>
+www.b.ycgskfy.com/Article/details/3916137.shtml<br>
+www.b.ycgskfy.com/Article/details/9218071.shtml<br>
+www.b.ycgskfy.com/Article/details/9103587.shtml<br>
+www.b.ycgskfy.com/Article/details/8055917.shtml<br>
+www.b.ycgskfy.com/Article/details/7991433.shtml<br>
+www.b.ycgskfy.com/Article/details/3249696.shtml<br>
+www.b.ycgskfy.com/Article/details/5206168.shtml<br>
+www.b.ycgskfy.com/Article/details/3439389.shtml<br>
+www.b.ycgskfy.com/Article/details/0294393.shtml<br>
+www.b.ycgskfy.com/Article/details/7200065.shtml<br>
+www.b.ycgskfy.com/Article/details/9403688.shtml<br>
+www.b.ycgskfy.com/Article/details/4061887.shtml<br>
+www.b.ycgskfy.com/Article/details/4510959.shtml<br>
+www.b.ycgskfy.com/Article/details/8669467.shtml<br>
+www.b.ycgskfy.com/Article/details/8536682.shtml<br>
+www.b.ycgskfy.com/Article/details/6509985.shtml<br>
+www.b.ycgskfy.com/Article/details/5019787.shtml<br>
+www.b.ycgskfy.com/Article/details/9110626.shtml<br>
+www.b.ycgskfy.com/Article/details/7658175.shtml<br>
+www.b.ycgskfy.com/Article/details/8877888.shtml<br>
+www.b.ycgskfy.com/Article/details/7547431.shtml<br>
+www.b.ycgskfy.com/Article/details/5729293.shtml<br>
+www.b.ycgskfy.com/Article/details/8962108.shtml<br>
+www.b.ycgskfy.com/Article/details/4839201.shtml<br>
+www.b.ycgskfy.com/Article/details/4211540.shtml<br>
+www.b.ycgskfy.com/Article/details/8354474.shtml<br>
+www.b.ycgskfy.com/Article/details/1988498.shtml<br>
+www.b.ycgskfy.com/Article/details/4306419.shtml<br>
+www.b.ycgskfy.com/Article/details/2790951.shtml<br>
+www.b.ycgskfy.com/Article/details/6504039.shtml<br>
+www.b.ycgskfy.com/Article/details/8006390.shtml<br>
+www.b.ycgskfy.com/Article/details/6080387.shtml<br>
+www.b.ycgskfy.com/Article/details/0856737.shtml<br>
+www.b.ycgskfy.com/Article/details/0549125.shtml<br>
+www.b.ycgskfy.com/Article/details/1361325.shtml<br>
+www.b.ycgskfy.com/Article/details/5385491.shtml<br>
+www.b.ycgskfy.com/Article/details/9905878.shtml<br>
+www.b.ycgskfy.com/Article/details/2329460.shtml<br>
+www.b.ycgskfy.com/Article/details/6107092.shtml<br>
+www.b.ycgskfy.com/Article/details/2656826.shtml<br>
+www.b.ycgskfy.com/Article/details/8941033.shtml<br>
+www.b.ycgskfy.com/Article/details/3427799.shtml<br>
+www.b.ycgskfy.com/Article/details/5766040.shtml<br>
+www.b.ycgskfy.com/Article/details/0612987.shtml<br>
+www.b.ycgskfy.com/Article/details/7248505.shtml<br>
+www.b.ycgskfy.com/Article/details/5433395.shtml<br>
+www.b.ycgskfy.com/Article/details/0703382.shtml<br>
+www.b.ycgskfy.com/Article/details/0204570.shtml<br>
+www.b.ycgskfy.com/Article/details/2548846.shtml<br>
+www.b.ycgskfy.com/Article/details/7644099.shtml<br>
+www.b.ycgskfy.com/Article/details/7841955.shtml<br>
+www.b.ycgskfy.com/Article/details/3703543.shtml<br>
+www.b.ycgskfy.com/Article/details/2422683.shtml<br>
+www.b.ycgskfy.com/Article/details/2658139.shtml<br>
+www.b.ycgskfy.com/Article/details/6090698.shtml<br>
+www.b.ycgskfy.com/Article/details/6096315.shtml<br>
+www.b.ycgskfy.com/Article/details/8061277.shtml<br>
+www.b.ycgskfy.com/Article/details/8548351.shtml<br>
+www.b.ycgskfy.com/Article/details/1099351.shtml<br>
+www.b.ycgskfy.com/Article/details/5694706.shtml<br>
+www.b.ycgskfy.com/Article/details/6173980.shtml<br>
+www.b.ycgskfy.com/Article/details/0646040.shtml<br>
+www.b.ycgskfy.com/Article/details/9468948.shtml<br>
+www.b.ycgskfy.com/Article/details/1210628.shtml<br>
+www.b.ycgskfy.com/Article/details/5655141.shtml<br>
+www.b.ycgskfy.com/Article/details/4268030.shtml<br>
+www.b.ycgskfy.com/Article/details/3957007.shtml<br>
+www.b.ycgskfy.com/Article/details/5682145.shtml<br>
+www.b.ycgskfy.com/Article/details/8690628.shtml<br>
+www.b.ycgskfy.com/Article/details/4324178.shtml<br>
+www.b.ycgskfy.com/Article/details/2770240.shtml<br>
+www.b.ycgskfy.com/Article/details/2497492.shtml<br>
+www.b.ycgskfy.com/Article/details/3683617.shtml<br>
+www.b.ycgskfy.com/Article/details/5571467.shtml<br>
+www.b.ycgskfy.com/Article/details/3877307.shtml<br>
+www.b.ycgskfy.com/Article/details/2093788.shtml<br>
+www.b.ycgskfy.com/Article/details/2052986.shtml<br>
+www.b.ycgskfy.com/Article/details/5618102.shtml<br>
+www.b.ycgskfy.com/Article/details/3533392.shtml<br>
+www.b.ycgskfy.com/Article/details/0206608.shtml<br>
+www.b.ycgskfy.com/Article/details/6797063.shtml<br>
+www.b.ycgskfy.com/Article/details/1576626.shtml<br>
+www.b.ycgskfy.com/Article/details/6410225.shtml<br>
+www.b.ycgskfy.com/Article/details/7540941.shtml<br>
+www.b.ycgskfy.com/Article/details/4361773.shtml<br>
+www.b.ycgskfy.com/Article/details/7987248.shtml<br>
+www.b.ycgskfy.com/Article/details/5494477.shtml<br>
+www.b.ycgskfy.com/Article/details/3162247.shtml<br>
+www.b.ycgskfy.com/Article/details/1285040.shtml<br>
+www.b.ycgskfy.com/Article/details/4434470.shtml<br>
+www.b.ycgskfy.com/Article/details/5424061.shtml<br>
+www.b.ycgskfy.com/Article/details/7876261.shtml<br>
+www.b.ycgskfy.com/Article/details/6791473.shtml<br>
+www.b.ycgskfy.com/Article/details/1210954.shtml<br>
+www.b.ycgskfy.com/Article/details/8104498.shtml<br>
+www.b.ycgskfy.com/Article/details/5659243.shtml<br>
+www.b.ycgskfy.com/Article/details/8090384.shtml<br>
+www.b.ycgskfy.com/Article/details/2353769.shtml<br>
+www.b.ycgskfy.com/Article/details/2467737.shtml<br>
+www.b.ycgskfy.com/Article/details/7407139.shtml<br>
+www.b.ycgskfy.com/Article/details/2309116.shtml<br>
+www.b.ycgskfy.com/Article/details/9548422.shtml<br>
+www.b.ycgskfy.com/Article/details/3139115.shtml<br>
+www.b.ycgskfy.com/Article/details/5791041.shtml<br>
+www.b.ycgskfy.com/Article/details/7273383.shtml<br>
+www.b.ycgskfy.com/Article/details/4166381.shtml<br>
+www.b.ycgskfy.com/Article/details/0250624.shtml<br>
+www.b.ycgskfy.com/Article/details/3247435.shtml<br>
+www.b.ycgskfy.com/Article/details/9986686.shtml<br>
+www.b.ycgskfy.com/Article/details/1397784.shtml<br>
+www.b.ycgskfy.com/Article/details/7906362.shtml<br>
+www.b.ycgskfy.com/Article/details/9836902.shtml<br>
+www.b.ycgskfy.com/Article/details/8540925.shtml<br>
+www.b.ycgskfy.com/Article/details/3470691.shtml<br>
+www.b.ycgskfy.com/Article/details/2104263.shtml<br>
+www.b.ycgskfy.com/Article/details/2762915.shtml<br>
+www.b.ycgskfy.com/Article/details/5663207.shtml<br>
+www.b.ycgskfy.com/Article/details/3109163.shtml<br>
+www.b.ycgskfy.com/Article/details/5026923.shtml<br>
+www.b.ycgskfy.com/Article/details/1921922.shtml<br>
+www.b.ycgskfy.com/Article/details/3542329.shtml<br>
+www.b.ycgskfy.com/Article/details/6551549.shtml<br>
+www.b.ycgskfy.com/Article/details/4985504.shtml<br>
+www.b.ycgskfy.com/Article/details/2796833.shtml<br>
+www.b.ycgskfy.com/Article/details/7038499.shtml<br>
+www.b.ycgskfy.com/Article/details/5442100.shtml<br>
+www.b.ycgskfy.com/Article/details/5676803.shtml<br>
+www.b.ycgskfy.com/Article/details/4577925.shtml<br>
+www.b.ycgskfy.com/Article/details/8033090.shtml<br>
+www.b.ycgskfy.com/Article/details/1607790.shtml<br>
+www.b.ycgskfy.com/Article/details/0408874.shtml<br>
+www.b.ycgskfy.com/Article/details/5790953.shtml<br>
+www.b.ycgskfy.com/Article/details/4980703.shtml<br>
+www.b.ycgskfy.com/Article/details/4503959.shtml<br>
+www.b.ycgskfy.com/Article/details/4384102.shtml<br>
+www.b.ycgskfy.com/Article/details/5061129.shtml<br>
+www.b.ycgskfy.com/Article/details/5654383.shtml<br>
+www.b.ycgskfy.com/Article/details/6827654.shtml<br>
+www.b.ycgskfy.com/Article/details/8653218.shtml<br>
+www.b.ycgskfy.com/Article/details/2092625.shtml<br>
+www.b.ycgskfy.com/Article/details/4242557.shtml<br>
+www.b.ycgskfy.com/Article/details/8029983.shtml<br>
+www.b.ycgskfy.com/Article/details/0997039.shtml<br>
+www.b.ycgskfy.com/Article/details/3532505.shtml<br>
+www.b.ycgskfy.com/Article/details/9172958.shtml<br>
+www.b.ycgskfy.com/Article/details/7658777.shtml<br>
+www.b.ycgskfy.com/Article/details/5614444.shtml<br>
+www.b.ycgskfy.com/Article/details/2434736.shtml<br>
+www.b.ycgskfy.com/Article/details/0250843.shtml<br>
+www.b.ycgskfy.com/Article/details/8963147.shtml<br>
+www.b.ycgskfy.com/Article/details/2425382.shtml<br>
+www.b.ycgskfy.com/Article/details/7915535.shtml<br>
+www.b.ycgskfy.com/Article/details/0250543.shtml<br>
+www.b.ycgskfy.com/Article/details/6722995.shtml<br>
+www.b.ycgskfy.com/Article/details/1668492.shtml<br>
+www.b.ycgskfy.com/Article/details/6769960.shtml<br>
+www.b.ycgskfy.com/Article/details/7509134.shtml<br>
+www.b.ycgskfy.com/Article/details/8464032.shtml<br>
+www.b.ycgskfy.com/Article/details/7648726.shtml<br>
+www.b.ycgskfy.com/Article/details/0513954.shtml<br>
+www.b.ycgskfy.com/Article/details/7842983.shtml<br>
+www.b.ycgskfy.com/Article/details/6176694.shtml<br>
+www.b.ycgskfy.com/Article/details/0374030.shtml<br>
+www.b.ycgskfy.com/Article/details/9778268.shtml<br>
+www.b.ycgskfy.com/Article/details/1529802.shtml<br>
+www.b.ycgskfy.com/Article/details/9192179.shtml<br>
+www.b.ycgskfy.com/Article/details/7802548.shtml<br>
+www.b.ycgskfy.com/Article/details/3438797.shtml<br>
+www.b.ycgskfy.com/Article/details/8093730.shtml<br>
+www.b.ycgskfy.com/Article/details/8344179.shtml<br>
+www.b.ycgskfy.com/Article/details/6846687.shtml<br>
+www.b.ycgskfy.com/Article/details/5258691.shtml<br>
+www.b.ycgskfy.com/Article/details/2762459.shtml<br>
+www.b.ycgskfy.com/Article/details/0135468.shtml<br>
+www.b.ycgskfy.com/Article/details/5725617.shtml<br>
+www.b.ycgskfy.com/Article/details/5026342.shtml<br>
+www.b.ycgskfy.com/Article/details/6473968.shtml<br>
+www.b.ycgskfy.com/Article/details/3213880.shtml<br>
+www.b.ycgskfy.com/Article/details/6863955.shtml<br>
+www.b.ycgskfy.com/Article/details/7439691.shtml<br>
+www.b.ycgskfy.com/Article/details/0369140.shtml<br>
+www.b.ycgskfy.com/Article/details/9468248.shtml<br>
+www.b.ycgskfy.com/Article/details/9793691.shtml<br>
+www.b.ycgskfy.com/Article/details/8690080.shtml<br>
+www.b.ycgskfy.com/Article/details/7134432.shtml<br>
+www.b.ycgskfy.com/Article/details/8626629.shtml<br>
+www.b.ycgskfy.com/Article/details/2600362.shtml<br>
+www.b.ycgskfy.com/Article/details/2760907.shtml<br>
+www.b.ycgskfy.com/Article/details/3546325.shtml<br>
+www.b.ycgskfy.com/Article/details/9807954.shtml<br>
+www.b.ycgskfy.com/Article/details/7027429.shtml<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2623:36:54
